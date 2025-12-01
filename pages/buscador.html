@@ -9,9 +9,20 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
 </head>
 
-<body>
-  <h1>Buscador</h1>
-
+<body>  
+  <section class="contenedorUrl">
+   <div class="lista">
+     <div class="titulo">
+       <h1>Añade tu enlace de interes <i class="fa-solid fa-link fa-l"></i></h1>
+     </div>
+     <div class="inputCont">
+      <input type="text" id="nombreUrl" placeholder="Nombre de tu enlace"> <br>
+    <input type="text" id="urlInput" placeholder="Pega aqui tu URL">
+    <button class="boton-URL" id="btnAñadir">Añadir URL</button>
+     </div>
+     <ul id="link-añadido" class="link-añadido"></ul>
+   </div>
+  </section>
 </body>
-
+<script src="/script/buscador.js"></script>
 </html>

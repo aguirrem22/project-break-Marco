@@ -1,0 +1,63 @@
+
+const nameInput = document.getElementById('nombreUrl');
+const urlInput = document.getElementById('urlInput');
+const addLinkButton = document.getElementById('btnAñadir');
+const linksContainer = document.getElementById('link-añadido');
+
+
+let savedLinks = JSON.parse(localStorage.getItem('links')) || [];
+
+
+function renderLinks() {
+    linksContainer.innerHTML = "";
+
+    savedLinks.forEach(link => {
+        const linkItem = createLinkItem(link);
+        linksContainer.appendChild(linkItem);
+    });
+}
+
+function createLinkItem({ name, url }) {
+    const li = document.createElement('li');
+    const a = document.createElement('a');
+    const deleteButton = document.createElement('button');
+
+    a.href = url;
+    a.target = "_blank";
+    a.textContent = name;
+
+    deleteButton.textContent = "X";
+    deleteButton.addEventListener('click', () => deleteLink(name, url));
+
+    li.appendChild(a);
+    li.appendChild(deleteButton);
+
+    return li;
+}
+
+function deleteLink(name, url) {
+    savedLinks = savedLinks.filter(link => link.name !== name || link.url !== url);
+    localStorage.setItem('links', JSON.stringify(savedLinks));
+    renderLinks();
+}
+
+function addLink() {
+    const name = nameInput.value.trim();
+    const url = urlInput.value.trim();
+
+    if (!name || !url) return;
+
+    savedLinks.push({ name, url });
+    localStorage.setItem('links', JSON.stringify(savedLinks));
+
+    // limpiar inputs
+    nameInput.value = "";
+    urlInput.value = "";
+
+    renderLinks();
+}
+
+
+addLinkButton.addEventListener('click', addLink);
+
+renderLinks();

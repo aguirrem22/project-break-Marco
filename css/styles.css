@@ -1,3 +1,4 @@
+
 nav button {
     background-color: transparent;
     border: none;
@@ -25,4 +26,21 @@ nav {
     gap: 10px;
     overflow-x: auto;
     white-space: nowrap;
+}
+body {
+    transition: opacity 1s ease-in-out;
+    opacity: 1;
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    image-rendering: auto;
+}
+
+.fade-out {
+    opacity: 0;
+}
+
+.fade-in {
+    opacity: 1;
 }
