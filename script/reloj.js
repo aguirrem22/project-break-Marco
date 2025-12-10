@@ -11,7 +11,7 @@ function actualizarReloj() {
     let mes = String(fechaHoy.getMonth() + 1).padStart(2, '0');
     let año = fechaHoy.getFullYear()
 
-    document.getElementById('fecha').textContent = `${dia}:${mes}:${año}`
+    document.getElementById('fecha').textContent = `${dia}/${mes}/${año}`
 
     let mensaje = ""
     let minutosTotales = fechaHoy.getHours() * 60 + fechaHoy.getMinutes();

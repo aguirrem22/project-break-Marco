@@ -677,5 +677,95 @@ nav button i {
         box-shadow: 0 0 8px rgba(50, 50, 50, 0.4);
     }
 }
+/* responsive */
+/* Teléfonos pequeños (max 480px) */
+@media (max-width: 480px) {
 
-/* boton x */
+    /* NAV redondo más pequeño */
+    nav {
+        scale: 0.8;
+        margin: 0;
+    }
+
+    nav button {
+        margin: 5px;
+        padding: 6px;
+    }
+
+    /* Carrusel */
+    .card-carousel {
+        width: 95%;
+        height: 380px;
+    }
+
+    .card {
+        border-radius: 15px;
+    }
+
+    .prev, .next {
+        width: 35px;
+        height: 35px;
+        font-size: 18px;
+        left: -40px;
+        right: -40px;
+    }
+
+    /* Tarjetas (reloj, clima, generador, etc.) */
+    .horalocal,
+    .generadorContraseñas,
+    .climacard,
+    .contenedorUrl {
+        width: 90%;
+        padding: 15px;
+        transform: translate(-50%, -50%) scale(.9);
+    }
+
+    #reloj {
+        font-size: 32px;
+    }
+
+    .temp-num {
+        font-size: 2rem;
+    }
+
+    .weather-body {
+        flex-direction: column;
+        gap: 10px;
+    }
+
+    /* Botón regresar */
+    #back-btn {
+        width: 40px;
+        height: 40px;
+        font-size: 16px;
+    }
+}
+
+/* Tablets (481–768px) */
+@media (max-width: 768px) {
+
+    .card-carousel {
+        width: 90%;
+        height: 500px;
+    }
+
+    .prev, .next {
+        width: 45px;
+        height: 45px;
+    }
+
+    .horalocal,
+    .generadorContraseñas,
+    .climacard,
+    .contenedorUrl {
+        width: 85%;
+    }
+}
+
+/* Pantallas grandes (más de 1200px) */
+@media (min-width: 1200px) {
+    .card-carousel {
+        width: 900px;
+        height: 700px;
+    }
+}
