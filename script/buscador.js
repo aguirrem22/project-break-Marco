@@ -1,4 +1,3 @@
-
 const nameInput = document.getElementById('nombreUrl');
 const urlInput = document.getElementById('urlInput');
 const addLinkButton = document.getElementById('btnAñadir');
@@ -50,7 +49,7 @@ function addLink() {
     savedLinks.push({ name, url });
     localStorage.setItem('links', JSON.stringify(savedLinks));
 
-    // limpiar inputs
+
     nameInput.value = "";
     urlInput.value = "";
 
@@ -61,3 +60,19 @@ function addLink() {
 addLinkButton.addEventListener('click', addLink);
 
 renderLinks();
+(function () {
+    const params = new URLSearchParams(location.search);
+    const target = params.get('view') || 'buscadorSec';
+    // Oculta todos y muestra el solicitado
+    document.querySelectorAll('.view').forEach(el => el.classList.remove('show'));
+    const el = document.getElementById(target);
+    if (el) el.classList.add('show');
+    if (!location.hash) {
+        document.querySelectorAll('.view').forEach(el => {
+            el.style.display = 'block';
+        });
+    }
+})();
+document.getElementById('btn-regresar').addEventListener('click', () => {
+    window.location.href = '/index.html';
+});

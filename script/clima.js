@@ -18,28 +18,50 @@ async function obtenerClima() {
         const viento = current.wind_kph
         const pronosticoHoras = forecast.forecastday[0].hour
 
-        let html= `
-        <div class="current">
-         <div>
-          <h2>${ciudadPais}</h2>
-            <p>${estadoClima}</p>
-            <img src=${iconoClima}>  <p>${temperatura}°C</p>
-            <p>Precipitacion: ${precipitacion}mm</p>
-            <p>Humedad: ${humedad}%</p>
-            <p>Viento: ${viento}km/h</p>             
-         </div>
-        <div class="forecast"> `
-         pronosticoHoras.forEach(i => {
-            const hora=i.time.split(" ")[1]
-            html+=  `<div class="hour-card"> <p>${hora}</p>
-            <img src=${i.condition.icon}>
-            <p>${i.temp_c}°C </p>
-            </div> `
-         })
+        let html = `
+<div class="current">
 
-        html+= `</div> 
-         </div>  `      
-        
+    <div class="weather-header">
+        <h2>${ciudadPais}</h2>
+        <p>${estadoClima}</p>
+    </div>
+
+    <div class="weather-body">
+
+        <div class="weather-left">
+            <img src="${iconoClima}" class="icono-clima">
+        </div>
+
+        <div class="weather-temp">
+            <p class="temp-num">${temperatura}°C</p>
+        </div>
+
+        <div class="weather-extra">
+            <p>Precipitaciones: ${precipitacion}mm</p>
+            <p>Humedad: ${humedad}%</p>
+            <p>Viento: ${viento} km/h</p>
+        </div>
+
+    </div>
+
+    <div class="forecast">
+`;
+
+pronosticoHoras.forEach(i => {
+    const hora = i.time.split(" ")[1];
+    html += `
+        <div class="hour-card">
+            <p>${hora}</p>
+            <img src="${i.condition.icon}">
+            <p>${i.temp_c}°C</p>
+        </div>
+    `;
+});
+
+html += `
+    </div>
+</div>
+`;
         
         document.getElementById('clima').innerHTML=html
 
@@ -52,3 +74,34 @@ async function obtenerClima() {
 
 }
 obtenerClima()
+if (localStorage.getItem("desdeIndex") === "true") {
+
+    const btn = document.createElement("button");
+    btn.id = "btn-regresar";
+    btn.textContent = "⬅ Regresar";
+
+    btn.onclick = () => {
+        localStorage.removeItem("desdeIndex");
+        window.location.href = "/index.html";
+    };
+
+    document.body.appendChild(btn);
+}
+
+
+(function () {
+    const params = new URLSearchParams(location.search);
+    const target = params.get('view') || 'climaSec';
+    // Oculta todos y muestra el solicitado
+    document.querySelectorAll('.view').forEach(el => el.classList.remove('show'));
+    const el = document.getElementById(target);
+    if (el) el.classList.add('show');
+    if (!location.hash) {
+        document.querySelectorAll('.view').forEach(el => {
+            el.style.display = 'block';
+        });
+    }
+})();
+document.getElementById('btn-regresar').addEventListener('click', () => {
+    window.location.href = '/index.html';
+});

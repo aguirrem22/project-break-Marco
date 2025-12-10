@@ -1,36 +1,36 @@
-const images = [
-    "img/img1.jpg",
-    "img/img2.jpg",
-    "img/img3.jpg",
-    "img/img4.jpg",
-    "img/img5.jpg",
-    "img/img6.jpg",
-    "img/img7.jpg",
-    "img/img8.jpg",
-    "img/img9.jpg",
-    "img/img10.jpg"
-];
+const cards = document.querySelectorAll(".card");
+let index = 0;
 
-function cambiarfondo() {
+function updateCarousel() {
 
-    document.body.classList.add("fade-out");
-    document.body.classList.remove("fade-in");
+    cards.forEach(card => {
+        card.classList.remove("center", "left", "right", "far-left", "far-right");
+    });
 
-    setTimeout(() => {
-  
-        const randomImage = images[Math.floor(Math.random() * images.length)];
-        document.body.style.backgroundImage = `url('${randomImage}')`;
-        document.body.style.backgroundSize = 'cover';
-        document.body.style.backgroundPosition = 'center';
-        document.body.style.backgroundRepeat = 'no-repeat';
+    const total = cards.length;
 
-        
-        document.body.classList.add("fade-in");
-        
-    }, 800);
+    const center = index;
+    const left = (index - 1 + total) % total;
+    const right = (index + 1) % total;
+    const farLeft = (index - 2 + total) % total;
+    const farRight = (index + 2) % total;
+
+    cards[center].classList.add("center");
+    cards[left].classList.add("left");
+    cards[right].classList.add("right");
+    cards[farLeft].classList.add("far-left");
+    cards[farRight].classList.add("far-right");
 }
 
-cambiarfondo();
+document.querySelector(".next").onclick = () => {
+    index = (index + 1) % cards.length;
+    updateCarousel();
+};
 
-setInterval(cambiarfondo, 10000);
+document.querySelector(".prev").onclick = () => {
+    index = (index - 1 + cards.length) % cards.length;
+    updateCarousel();
+};
+
+updateCarousel();
 

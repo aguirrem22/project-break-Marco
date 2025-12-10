@@ -1,46 +1,681 @@
-
+/* navegador */
 nav button {
     background-color: transparent;
     border: none;
-    padding: 5px;
+    padding: 10px;
     margin: 10px;
+
 }
 
 nav button:hover {
-    transform: scale(1.2);
+    transform: scale(1.5);
     cursor: pointer;
+}
+
+nav:hover> :not(:hover) {
+    opacity: .7;
+    filter: blur(3px);
 }
 
 iframe {
     border: none;
+
 }
+
 nav {
     display: flex;
     justify-content: center;
     align-items: center;
+    background-color: rgba(0, 0, 0, 0.781);
+    width: min-content;
+    border-radius: 20px;
+    padding: 5px;
+    margin: 5px;
+
+
+
 }
-.forecast{
-    display: grid;
-    grid-auto-flow: column;
-    grid-auto-columns: minmax(100px, 1fr);
-    gap: 10px;
-    overflow-x: auto;
-    white-space: nowrap;
+
+nav button i {
+
+    color: white
 }
-body {
-    transition: opacity 1s ease-in-out;
-    opacity: 1;
+
+.sectionNav {
+    display: flex;
+    justify-content: center;
+}
+
+/* fin navegador */
+/* boton regresar inicio */
+
+.regresar {
+    background-color: rgba(0, 0, 0, 0.5);
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 10px;
+    cursor: pointer;
+    font-size: 16px;
+    margin-bottom: 10px;
+    transition: background-color 0.3s ease;
+}
+.regresar:hover {
+    background-color: rgba(255, 255, 255, 0.3);
+}
+
+.headerNav{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+
+
+
+
+
+/* fondos imagenes */
+#backgroundIMG {
+    position: fixed;
+    inset: 0;
+    z-index: -1;
+
     background-size: cover;
     background-position: center;
     background-repeat: no-repeat;
-    background-attachment: fixed;
-    image-rendering: auto;
-}
 
-.fade-out {
-    opacity: 0;
-}
-
-.fade-in {
     opacity: 1;
+
+    transition: opacity 1.8s ease-in-out, filter 1.8s ease-out;
 }
+
+#backgroundIMG.fade {
+    opacity: 0;
+    filter: brightness(40%) blur(4px);
+}
+
+#backgroundIMG::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+
+    background: radial-gradient(circle,
+            rgba(0, 0, 0, 0) 40%,
+            rgba(0, 0, 0, 0.55) 100%);
+}
+
+
+/* fin fondos imagenes */
+/* contenedores generales */
+.contenedorUrl {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 300px;
+    flex-direction: column;
+}
+
+
+.contenedor {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    flex-direction: column;
+}
+
+.contenedor-reloj {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    gap: 15px;
+}
+
+.content {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    flex-direction: column;
+}
+
+.content #reloj,
+#password,
+#buscador {
+    background-color: rgba(150, 149, 149, 0.486);
+
+
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.342);
+    padding: 20px;
+    margin: 10px;
+    align-items: center;
+    text-align: center;
+
+}
+
+/* contenedores generales */
+
+/* carrusel */
+.view {
+    display: none;
+}
+
+.view.show {
+    display: block;
+}
+
+
+
+/* body:not(:has(:target)) #buscadorSec{
+
+    /* display: block; */
+/* } */
+
+.card-carousel {
+    position: relative;
+    width: 750px;
+    height: 650px;
+    margin: auto;
+    margin-top: 50px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.cards {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    perspective: 1200px;
+}
+
+
+.card {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    border-radius: 25px;
+    overflow: hidden;
+    background: #000000e8;
+    transform-style: preserve-3d;
+    transition: transform .8s ease, opacity .8s ease;
+}
+
+
+.card iframe {
+    width: 100%;
+    height: 100%;
+    border: none;
+}
+
+.nav {
+    position: absolute;
+    z-index: 20;
+    background: rgba(136, 131, 131, 0.8);
+    color: white;
+    border: none;
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    cursor: pointer;
+    font-size: 25px;
+    margin: 15px;
+}
+
+.prev {
+    left: -70px;
+}
+
+.next {
+    right: -70px;
+}
+
+
+.card.center {
+    transform: translateZ(160px);
+    opacity: 1;
+    z-index: 4;
+}
+
+.card.left {
+    transform: translateX(-180px) rotateY(28deg) translateZ(-60px) scale(.88);
+    opacity: 0.35;
+    z-index: 2;
+}
+
+.card.right {
+    transform: translateX(180px) rotateY(-28deg) translateZ(-60px) scale(.88);
+    opacity: 0.35;
+    z-index: 2;
+}
+
+.card.far-left,
+.card.far-right {
+    opacity: 0;
+    transform: scale(.7) translateZ(-200px);
+    z-index: 1;
+}
+
+.contenedor-principal {
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+}
+
+
+
+
+/* fin carrusel */
+/* tarjetas reloj clima generador contraseñas */
+.horalocal,
+.generadorContraseñas,
+.climacard,
+.contenedorUrl {
+    width: 100%;
+    max-width: 600px;
+    padding: 25px;
+    background: rgba(31, 30, 30, 0.75);
+    border: 2px solid #11191b;
+    border-radius: 15px;
+    box-shadow: 0 0 20px rgb(82, 53, 53);
+    color: white;
+    text-align: center;
+    backdrop-filter: blur(8px);
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+.horalocal h1 {
+    margin-top: 0;
+    font-size: 26px;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: #ffffff;
+}
+
+/*fin tarjetas reloj clima generador contraseñas */
+/* Estilos reloj */
+#reloj {
+    font-size: 45px;
+    font-weight: bold;
+    margin: 10px 0;
+    letter-spacing: 4px;
+
+    font-family: 'Courier New', monospace;
+
+
+}
+
+
+#fecha {
+    margin-top: 8px;
+    font-size: 20px;
+    letter-spacing: 1px;
+    opacity: 0.9;
+}
+
+
+#mensaje {
+    margin-top: 15px;
+    font-size: 22px;
+    font-weight: bold;
+    color: #ffffff;
+    text-shadow: 0 0 8px #000000;
+}
+
+
+#reloj,
+#fecha,
+#mensaje {
+    transition: all 0.3s ease-in-out;
+}
+
+.current {
+    width: 90%;
+    max-width: 600px;
+    background: rgba(0, 0, 0, 0.26);
+    padding: 20px;
+    border-radius: 25px;
+    color: white;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+/* Fin estilos reloj */
+/* Estilos clima */
+#clima {
+    display: flex;
+    justify-content: center;
+}
+
+.weather-header h2 {
+    margin: 0;
+    font-size: 2rem;
+}
+
+.weather-header p {
+    margin: 2px 0 10px;
+    opacity: 0.8;
+    font-size: 1.2rem;
+}
+
+.weather-body {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+}
+
+.icono-clima {
+    width: 100px;
+    height: 100px;
+}
+
+.weather-temp {
+    text-align: center;
+}
+
+.temp-num {
+    font-size: 2.8rem;
+    font-weight: bold;
+}
+
+.weather-extra {
+    text-align: right;
+
+}
+
+.weather-extra p {
+    margin: 2px 0;
+    font-size: 1.2rem;
+    opacity: 0.9;
+}
+
+.forecast {
+    margin-top: 15px;
+    display: grid;
+    grid-auto-flow: column;
+    grid-auto-columns: minmax(70px, 1fr);
+    gap: 10px;
+    overflow-x: auto;
+}
+
+.hour-card {
+    background: rgba(255, 255, 255, 0.15);
+    border-radius: 10px;
+    padding: 10px;
+    text-align: center;
+}
+
+/* Fin clima */
+/* Estilos generador contraseñas */
+.generadorContraseñas h1 {
+    margin-top: 0;
+    font-size: 26px;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: #ffffff;
+}
+
+.generadorContraseñas input[type="number"] {
+    width: 60px;
+    padding: 8px;
+    margin: 10px 0;
+    border: none;
+    border-radius: 5px;
+    font-size: 16px;
+}
+
+.btn-dark-animated {
+    padding: 12px 25px;
+    color: #fff;
+    font-size: 18px;
+    border: none;
+    border-radius: 10px;
+    cursor: pointer;
+
+    background: linear-gradient(90deg, #0d0d0d, #1c1c1c, #3a3a3a);
+    background-size: 300% 300%;
+    animation: darkMove 4s ease-in-out infinite;
+
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.5);
+    transition: transform .2s;
+}
+
+.btn-dark-animated:hover {
+    transform: scale(1.08);
+}
+
+@keyframes darkMove {
+    0% {
+        background-position: 0% 50%;
+    }
+
+    50% {
+        background-position: 100% 50%;
+    }
+
+    100% {
+        background-position: 0% 50%;
+    }
+}
+
+
+
+.generadorContraseñas .resultado {
+    margin-top: 15px;
+    font-size: 20px;
+    word-break: break-all;
+    background: rgba(255, 255, 255, 0.15);
+    padding: 10px;
+    border-radius: 10px;
+}
+
+.generadorContraseñas p {
+    font-size: px;
+}
+
+/* Fin estilos generador contraseñas */
+/*Estilos buscador url*/
+.contenedorUrl h1 {
+    margin-top: 0;
+    font-size: 26px;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: #ffffff;
+}
+
+.contenedorUrl input[type="text"] {
+    width: 80%;
+    padding: 8px;
+    margin: 10px 0;
+    border: none;
+    border-radius: 5px;
+    font-size: 16px;
+}
+
+.boton-URL {
+    padding: 12px 24px;
+    font-size: 18px;
+    color: #fff;
+    border: none;
+    border-radius: 12px;
+    cursor: pointer;
+    position: relative;
+    overflow: hidden;
+    z-index: 1;
+    background: linear-gradient(45deg, #ff0080, #ff8c00, #40e0d0, #8a2be2);
+    background-size: 300% 300%;
+    animation: gradientAnim 4s ease infinite;
+    transition: transform .2s;
+}
+
+.boton-URL:hover {
+    transform: scale(1.05);
+}
+
+@keyframes gradientAnim {
+    0% {
+        background-position: 0% 50%;
+    }
+
+    50% {
+        background-position: 100% 50%;
+    }
+
+    100% {
+        background-position: 0% 50%;
+    }
+}
+
+
+.contenedorUrl .resultadoUrl {
+    margin-top: 15px;
+    font-size: 20px;
+    word-break: break-all;
+    background: rgba(255, 255, 255, 0.15);
+    padding: 10px;
+    border-radius: 10px;
+}
+
+.contenedorUrl p {
+    font-size: px;
+}
+
+#link-añadido li{
+    color: #00ff00;
+    font-weight: bold;
+    margin-top: 10px;
+    list-style: none;
+    background-color: #333;
+    text-align: left;
+    width: max-content;
+    margin: 10px;
+    padding: 10px;
+    border-radius: 8px;
+
+}
+
+#link-añadido a {
+    text-decoration: none;
+    color: #ffffff;
+    padding-right: 20px;
+}
+#link-añadido button {
+    background-color: #ff4d4d2a;
+    border: none;
+    color: white;
+    padding: 5px 10px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 14px;
+    margin-left: 10px;
+    border-radius: 5px;
+    cursor: pointer;
+}
+#link-añadido button:hover {
+    background-color: #ff1a1a;
+}
+
+
+/*Fin estilos buscador url*/
+/* estilos boton x */
+#back-container {
+    position: fixed;
+    top: 18px;
+    left: 18px;
+    z-index: 9999;
+    pointer-events: auto;
+}
+
+#back-btn {
+    height: 44px;
+    width: 44px;
+    border-radius: 10px;
+    border: none;
+    cursor: pointer;
+    font-size: 20px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    color: #fff;
+    background: linear-gradient(135deg, #0f0f10, #1b1b1f);
+    box-shadow: 0 6px 18px rgba(0, 0, 0, 0.6), inset 0 -2px 0 rgba(255, 255, 255, 0.02);
+    transition: transform .18s ease, box-shadow .18s ease;
+    backdrop-filter: blur(6px);
+}
+
+/* animación sutil de color oscuro (loop) */
+@keyframes darkShift {
+    0% {
+        background: linear-gradient(135deg, #0f0f10, #1b1b1f);
+    }
+
+    50% {
+        background: linear-gradient(135deg, #0b0b0c, #242428);
+    }
+
+    100% {
+        background: linear-gradient(135deg, #0f0f10, #1b1b1f);
+    }
+}
+
+#back-btn {
+    animation: darkShift 6s ease-in-out infinite;
+}
+
+#back-btn:hover {
+    transform: translateY(-3px) scale(1.02);
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.7);
+}
+
+
+
+#back-container {
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    z-index: 9999;
+}
+
+#back-btn {
+    background: linear-gradient(135deg, #111, #333, #111);
+    border: none;
+    padding: 12px 18px;
+    border-radius: 50%;
+    font-size: 18px;
+    color: white;
+    cursor: pointer;
+    box-shadow: 0 0 10px rgba(0, 0, 0, .6);
+    transition: transform .2s ease, box-shadow .2s ease;
+    animation: glow 3s infinite;
+}
+
+#back-btn:hover {
+    transform: scale(1.1);
+    box-shadow: 0 0 14px rgba(0, 0, 0, .9);
+}
+
+@keyframes glow {
+    0% {
+        box-shadow: 0 0 8px rgba(50, 50, 50, 0.4);
+    }
+
+    50% {
+        box-shadow: 0 0 18px rgba(255, 255, 255, 0.2);
+    }
+
+    100% {
+        box-shadow: 0 0 8px rgba(50, 50, 50, 0.4);
+    }
+}
+
+/* boton x */
