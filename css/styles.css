@@ -33,7 +33,6 @@ nav {
     margin: 5px;
 
 
-
 }
 
 nav button i {
@@ -74,7 +73,6 @@ nav button i {
 
 
 
-
 /* fondos imagenes */
 #backgroundIMG {
     position: fixed;
@@ -106,7 +104,6 @@ nav button i {
             rgba(0, 0, 0, 0.55) 100%);
 }
 
-
 /* fin fondos imagenes */
 /* contenedores generales */
 .contenedorUrl {
@@ -116,7 +113,6 @@ nav button i {
     width: 300px;
     flex-direction: column;
 }
-
 
 .contenedor {
     display: flex;
@@ -148,7 +144,6 @@ nav button i {
 #buscador {
     background-color: rgba(150, 149, 149, 0.486);
 
-
     border-radius: 10px;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.342);
     padding: 20px;
@@ -168,7 +163,6 @@ nav button i {
 .view.show {
     display: block;
 }
-
 
 
 /* body:not(:has(:target)) #buscadorSec{
@@ -194,7 +188,6 @@ nav button i {
     perspective: 1200px;
 }
 
-
 .card {
     position: absolute;
     width: 100%;
@@ -205,7 +198,6 @@ nav button i {
     transform-style: preserve-3d;
     transition: transform .8s ease, opacity .8s ease;
 }
-
 
 .card iframe {
     width: 100%;
@@ -234,7 +226,6 @@ nav button i {
 .next {
     right: -70px;
 }
-
 
 .card.center {
     transform: translateZ(160px);
@@ -266,7 +257,6 @@ nav button i {
     justify-content: center;
     flex-direction: column;
 }
-
 
 
 
@@ -311,9 +301,7 @@ nav button i {
 
     font-family: 'Courier New', monospace;
 
-
 }
-
 
 #fecha {
     margin-top: 8px;
@@ -322,7 +310,6 @@ nav button i {
     opacity: 0.9;
 }
 
-
 #mensaje {
     margin-top: 15px;
     font-size: 22px;
@@ -330,7 +317,6 @@ nav button i {
     color: #ffffff;
     text-shadow: 0 0 8px #000000;
 }
-
 
 #reloj,
 #fecha,
@@ -468,7 +454,6 @@ nav button i {
 }
 
 
-
 .generadorContraseñas .resultado {
     margin-top: 15px;
     font-size: 20px;
@@ -535,7 +520,6 @@ nav button i {
     }
 }
 
-
 .contenedorUrl .resultadoUrl {
     margin-top: 15px;
     font-size: 20px;
@@ -584,7 +568,6 @@ nav button i {
 #link-añadido button:hover {
     background-color: #ff1a1a;
 }
-
 
 /*Fin estilos buscador url*/
 /* estilos boton x */
@@ -638,7 +621,6 @@ nav button i {
 }
 
 
-
 #back-container {
     position: fixed;
     top: 20px;
@@ -678,94 +660,223 @@ nav button i {
     }
 }
 /* responsive */
-/* Teléfonos pequeños (max 480px) */
+/* =======================================
+   RESET GENERAL
+======================================= */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: Arial, Helvetica, sans-serif;
+    color: white;
+    overflow-x: hidden;
+}
+
+iframe {
+    border: none;
+}
+
+/* =======================================
+   FONDO
+======================================= */
+#backgroundIMG {
+    position: fixed;
+    inset: 0;
+    background-size: cover;
+    background-position: center;
+    z-index: -1;
+    filter: brightness(0.8);
+}
+
+/* =======================================
+   CONTENEDOR PRINCIPAL
+======================================= */
+.contenedor-principal {
+    width: 100%;
+    margin-top: 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.contenedor-principal > iframe {
+    width: min(95%, 900px);
+    height: 80px;
+    margin-bottom: 20px;
+}
+
+/* =======================================
+   CARRUSEL RESPONSIVE REAL
+======================================= */
+
+.card-carousel {
+    width: min(90%, 900px);
+    margin: 0 auto;
+    position: relative;
+    padding: 20px 40px;
+    box-sizing: border-box;
+    overflow: visible !important;
+}
+
+.cards {
+    display: flex;
+    width: 100%;
+    transition: transform 0.4s ease;
+}
+
+.card {
+    min-width: 100%;
+    background: rgba(0, 0, 0, 0.40);
+    backdrop-filter: blur(10px);
+    border-radius: 15px;
+    overflow: hidden;
+    display: flex;
+}
+
+.card iframe {
+    width: 100%;
+    height: auto;
+    min-height: 420px;
+}
+
+/* =======================================
+   FLECHAS DEL CARRUSEL
+======================================= */
+.nav {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    z-index: 10;
+
+    width: 45px;
+    height: 45px;
+    background: rgba(255,255,255,0.15);
+    border: 2px solid rgba(255,255,255,0.3);
+    color: white;
+    border-radius: 12px;
+    font-size: 25px;
+    cursor: pointer;
+
+    backdrop-filter: blur(6px);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: 0.25s ease;
+}
+
+.nav:hover {
+    background: rgba(255,255,255,0.25);
+}
+
+.prev { left: 5px; }
+.next { right: 5px; }
+
+/* =======================================
+   TARJETAS INTERNAS (reloj, clima, URLs…)
+======================================= */
+
+.horalocal,
+.generadorContraseñas,
+.climacard,
+.contenedorUrl {
+    width: 100%;
+    max-width: 95%;
+    margin: 20px auto;
+    position:fixed;
+}
+
+#reloj {
+    font-size: 40px;
+    font-weight: bold;
+}
+
+.weather-body {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+}
+
+/* 
+   BOTÓN REGRESAR
+*/
+#back-btn {
+    position: fixed;
+    top: 20px;
+    left: 20px;
+
+    width: 45px;
+    height: 45px;
+    font-size: 18px;
+
+    border: none;
+    border-radius: 50%;
+    cursor: pointer;
+
+    background: rgba(0,0,0,0.5);
+    color: white;
+    backdrop-filter: blur(5px);
+    z-index: 100;
+}
+
+
+
+
+/*  480px — MÓVIL*/
 @media (max-width: 480px) {
 
-    /* NAV redondo más pequeño */
-    nav {
-        scale: 0.8;
-        margin: 0;
-    }
-
-    nav button {
-        margin: 5px;
-        padding: 6px;
-    }
-
-    /* Carrusel */
     .card-carousel {
-        width: 95%;
-        height: 380px;
+        padding: 15px 35px;
     }
 
-    .card {
-        border-radius: 15px;
-    }
-
-    .prev, .next {
-        width: 35px;
-        height: 35px;
+    .nav {
+        width: 36px;
+        height: 36px;
         font-size: 18px;
-        left: -40px;
-        right: -40px;
     }
 
-    /* Tarjetas (reloj, clima, generador, etc.) */
-    .horalocal,
-    .generadorContraseñas,
-    .climacard,
-    .contenedorUrl {
-        width: 90%;
-        padding: 15px;
-        transform: translate(-50%, -50%) scale(.9);
+    .card iframe {
+        min-height: 380px;
     }
 
-    #reloj {
-        font-size: 32px;
-    }
-
-    .temp-num {
-        font-size: 2rem;
-    }
-
-    .weather-body {
-        flex-direction: column;
-        gap: 10px;
-    }
-
-    /* Botón regresar */
     #back-btn {
-        width: 40px;
-        height: 40px;
-        font-size: 16px;
+        width: 38px;
+        height: 38px;
+        font-size: 15px;
     }
 }
 
-/* Tablets (481–768px) */
+/* ========== 768px — TABLET ========== */
 @media (max-width: 768px) {
 
     .card-carousel {
-        width: 90%;
-        height: 500px;
+        width: 95%;
+        padding: 15px 45px;
     }
 
-    .prev, .next {
-        width: 45px;
-        height: 45px;
-    }
-
-    .horalocal,
-    .generadorContraseñas,
-    .climacard,
-    .contenedorUrl {
-        width: 85%;
+    .card iframe {
+        min-height: 430px;
     }
 }
 
-/* Pantallas grandes (más de 1200px) */
+/* ========== DESKTOP GRANDE 1200px+ ========== */
 @media (min-width: 1200px) {
+
     .card-carousel {
-        width: 900px;
-        height: 700px;
+        width: 1000px;
+        padding: 20px 60px;
+    }
+
+    .nav {
+        width: 55px;
+        height: 55px;
+        font-size: 30px;
+    }
+
+    .card iframe {
+        min-height: 500px;
     }
 }
+
