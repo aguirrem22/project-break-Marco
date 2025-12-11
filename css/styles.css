@@ -807,7 +807,6 @@ carrusel responsive
     border-radius: 12px;
     font-size: 25px;
     cursor: pointer;
-
     backdrop-filter: blur(6px);
     display: flex;
     align-items: center;
@@ -833,7 +832,7 @@ carrusel responsive
 .generadorContraseñas,
 
 .contenedorUrl {
-    display: flex;
+    
     width: 100%;
     max-width: 95%;
     margin: 20px auto;
