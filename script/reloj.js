@@ -33,17 +33,14 @@ function actualizarReloj() {
     else if (minutosTotales >= 1081 && minutosTotales <= 1320) {
         mensaje = "Haz un poco de MMA para acabar el día con buen sabor de boca"
     }
-    else { 
+    else {
         mensaje = "Tu entreno ha terminado guerrero , a descansar y recargar energías para mañana"
     }
-    document.getElementById('mensaje').textContent=mensaje
-    
+    document.getElementById('mensaje').textContent = mensaje
+
 }
-setInterval(actualizarReloj,1000)
+setInterval(actualizarReloj, 1000)
 actualizarReloj()
-
-
-
 
 document.addEventListener("DOMContentLoaded", () => {
 
@@ -54,12 +51,6 @@ document.addEventListener("DOMContentLoaded", () => {
         btnBack.style.position = "fixed";
         btnBack.style.bottom = "20px";
         btnBack.style.right = "20px";
-
-        btnBack.addEventListener('click', () => {
-            localStorage.removeItem("mostrarBackBtn");
-            window.location.href = '/index.html';
-        });
-
         document.body.appendChild(btnBack);
     }
 
@@ -69,7 +60,7 @@ document.addEventListener("DOMContentLoaded", () => {
 (function () {
     const params = new URLSearchParams(location.search);
     const target = params.get('view') || 'relojSec';
-    // Oculta todos y muestra el solicitado
+
     document.querySelectorAll('.view').forEach(el => el.classList.remove('show'));
     const el = document.getElementById(target);
     if (el) el.classList.add('show');
@@ -80,5 +71,5 @@ document.addEventListener("DOMContentLoaded", () => {
     }
 })();
 document.getElementById('btn-regresar').addEventListener('click', () => {
-    window.location.href = '/index.html';
+    window.location.href = '/project-break-Marco/index.html';
 });

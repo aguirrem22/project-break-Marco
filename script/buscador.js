@@ -74,5 +74,5 @@ renderLinks();
     }
 })();
 document.getElementById('btn-regresar').addEventListener('click', () => {
-    window.location.href = '/index.html';
+    window.location.href = '/project-break-Marco/index.html';
 });
