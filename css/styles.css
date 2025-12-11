@@ -717,7 +717,7 @@ iframe {
 }
 
 /* 
-   FONDO
+FONDO
  */
 #backgroundIMG {
     position: fixed;
@@ -736,7 +736,7 @@ iframe {
     filter: brightness(0.8);
 }
 /* 
-   contenedor principal responsive
+contenedor principal responsive
  */
 .contenedor-principal {
     width: 100%;
