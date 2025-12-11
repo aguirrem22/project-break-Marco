@@ -1,5 +1,6 @@
 const bg = document.getElementById("backgroundIMG");
 
+
 const photos = [
     "img1.jpg",
     "img2.jpg",
@@ -20,7 +21,7 @@ function changeBackground() {
     setTimeout(() => {
 
         const random = Math.floor(Math.random() * photos.length);
-        bg.style.backgroundImage = `url(/img/${photos[random]})`;
+        bg.style.backgroundImage = `url(../img/${photos[random]})`;
 
 
         bg.classList.remove("fade");
@@ -28,5 +29,7 @@ function changeBackground() {
     }, 1800);
 }
 
+
 changeBackground();
+
 setInterval(changeBackground, 10000); 

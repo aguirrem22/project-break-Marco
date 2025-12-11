@@ -85,13 +85,43 @@ nav button i {
 
     transition: opacity 1.8s ease-in-out, filter 1.8s ease-out;
 }
+#background {
+    position: fixed;
+    inset: 0;
+    z-index: -1;
+
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+
+    opacity: 1;
+
+    transition: opacity 1.8s ease-in-out, filter 1.8s ease-out;
+}
+
 
 #backgroundIMG.fade {
     opacity: 0;
     filter: brightness(40%) blur(4px);
 }
 
+#background.fade {
+    opacity: 0;
+    filter: brightness(40%) blur(4px);
+}
+
 #backgroundIMG::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+
+    background: radial-gradient(circle,
+            rgba(0, 0, 0, 0) 40%,
+            rgba(0, 0, 0, 0.55) 100%);
+}
+
+#background::after {
     content: "";
     position: absolute;
     inset: 0;
@@ -691,7 +721,14 @@ iframe {
     z-index: -1;
     filter: brightness(0.8);
 }
-
+#background {
+    position: fixed;
+    inset: 0;
+    background-size: cover;
+    background-position: center;
+    z-index: -1;
+    filter: brightness(0.8);
+}
 /* 
    contenedor principal responsive
  */
