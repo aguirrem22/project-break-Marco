@@ -353,10 +353,10 @@ body:not(:has(:target)) #buscadorSec {
 }
 
 .current {
-    width: 90%;
-    max-width: 600px;
+    width: 90%;    
     background: rgba(0, 0, 0, 0.26);
-    /* padding: 20px; */
+    
+    
     border-radius: 25px;
     color: white;
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
